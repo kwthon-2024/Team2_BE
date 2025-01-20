@@ -1,13 +1,11 @@
 package com.kwhackathon.broom.bus.controller;
 
+import com.kwhackathon.broom.bus.dto.request.CreateReservationDto;
+import com.kwhackathon.broom.bus.service.BusReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.kwhackathon.broom.bus.dto.request.CreateReservationDto;
-import com.kwhackathon.broom.bus.service.BusReservationService;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor

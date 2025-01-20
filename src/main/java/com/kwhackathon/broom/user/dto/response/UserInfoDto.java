@@ -1,7 +1,6 @@
 package com.kwhackathon.broom.user.dto.response;
 
 import com.kwhackathon.broom.user.util.MilitaryChaplain;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

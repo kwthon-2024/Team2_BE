@@ -1,23 +1,17 @@
 package com.kwhackathon.broom.user.controller;
 
+import com.kwhackathon.broom.user.dto.request.*;
+import com.kwhackathon.broom.user.dto.response.TokenDto;
+import com.kwhackathon.broom.user.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.kwhackathon.broom.user.dto.request.SignupDto;
-import com.kwhackathon.broom.user.dto.request.UpdatePasswordDto;
-import com.kwhackathon.broom.user.dto.request.UpdateUserInfoDto;
-import com.kwhackathon.broom.user.dto.request.ValidateIdDto;
-import com.kwhackathon.broom.user.dto.request.ValidateNicknameDto;
-import com.kwhackathon.broom.user.dto.response.TokenDto;
-import com.kwhackathon.broom.user.service.UserService;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor

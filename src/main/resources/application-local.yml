@@ -1,0 +1,31 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: ${url}
+    username: broom-user
+    password: ${password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${ddl-auto}
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        format_sql: true
+  rabbitmq:
+    host: ${host}
+    port: ${port}
+    default-port: ${default-port}
+    username: ${mq-username}
+    password: ${mq-password}
+    virtual-host: ${virtual-host}
+    template:
+      mandatory: true
+app:
+  allowed-origins: ${allowed-origin}

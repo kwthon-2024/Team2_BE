@@ -1,14 +1,6 @@
 package com.kwhackathon.broom.common.filter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
-import org.springframework.web.filter.GenericFilterBean;
-
 import com.kwhackathon.broom.common.util.JwtUtil;
-
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -18,6 +10,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.web.filter.GenericFilterBean;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @RequiredArgsConstructor
 public class LogoutFilter extends GenericFilterBean {
