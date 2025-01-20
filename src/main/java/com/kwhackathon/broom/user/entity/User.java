@@ -1,31 +1,22 @@
 package com.kwhackathon.broom.user.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.kwhackathon.broom.carpool.entity.CarpoolBoard;
-import com.kwhackathon.broom.team.entity.TeamBoard;
+import com.kwhackathon.broom.board.team.entity.TeamBoard;
+import com.kwhackathon.broom.bookmark.carpool.entity.CarpoolBookmark;
 import com.kwhackathon.broom.user.dto.request.UpdateUserInfoDto;
 import com.kwhackathon.broom.user.util.MilitaryChaplain;
 import com.kwhackathon.broom.user.util.Role;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -55,7 +46,7 @@ public class User implements UserDetails {
     private Role role; // 권한 정보
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CarpoolBoard> carpoolBoards;
+    private List<CarpoolBookmark> carpoolBookmarks;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<TeamBoard> teamBoards;

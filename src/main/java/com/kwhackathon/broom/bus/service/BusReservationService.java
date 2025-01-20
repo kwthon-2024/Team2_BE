@@ -1,20 +1,18 @@
 package com.kwhackathon.broom.bus.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.kwhackathon.broom.bus.dto.request.CreateReservationDto;
 import com.kwhackathon.broom.bus.dto.response.ReservationBoolean;
 import com.kwhackathon.broom.bus.dto.response.ReservationInfoElement;
 import com.kwhackathon.broom.bus.dto.response.Reservations;
 import com.kwhackathon.broom.bus.entity.BusReservation;
 import com.kwhackathon.broom.bus.repository.BusReservationRepository;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional

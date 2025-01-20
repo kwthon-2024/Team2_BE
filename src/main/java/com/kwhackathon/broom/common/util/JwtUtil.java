@@ -1,21 +1,21 @@
 package com.kwhackathon.broom.common.util;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
+import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import io.jsonwebtoken.Jwts;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 @Component
+@PropertySource("classpath:secure.properties")
 public class JwtUtil {
     private SecretKey secretKey;
 
-    public JwtUtil(@Value("${spring.jwt.secret}") String secret) {
+    public JwtUtil(@Value("${jwt.secret}") String secret) {
         this.secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8),
                 Jwts.SIG.HS256.key().build().getAlgorithm());
     }

@@ -1,11 +1,10 @@
 package com.kwhackathon.broom.bus.repository;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kwhackathon.broom.bus.entity.BusReservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.kwhackathon.broom.bus.entity.BusReservation;
+import java.util.List;
+import java.util.Optional;
 
 public interface BusReservationRepository  extends JpaRepository<BusReservation, Long> {
     Optional<BusReservation> findByStudentId(String studentId);

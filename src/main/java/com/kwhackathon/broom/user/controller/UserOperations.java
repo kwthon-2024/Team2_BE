@@ -1,20 +1,10 @@
 package com.kwhackathon.broom.user.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.kwhackathon.broom.user.dto.request.SignupDto;
-import com.kwhackathon.broom.user.dto.request.UpdatePasswordDto;
-import com.kwhackathon.broom.user.dto.request.UpdateUserInfoDto;
-import com.kwhackathon.broom.user.dto.request.ValidateIdDto;
-import com.kwhackathon.broom.user.dto.request.ValidateNicknameDto;
-
+import com.kwhackathon.broom.user.dto.request.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 public interface UserOperations {
     @PostMapping("/signup")
