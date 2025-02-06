@@ -10,6 +10,8 @@ public class CorsMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("https://broom.life")
+                .allowedOrigins("http://localhost:8080")
+
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("Access-Control-Allow-Origin")
                 // .allowedHeaders("Access-Control-Allow-Credentials")

@@ -24,6 +24,9 @@ application.yml
 application-local.yml
 application-prod.yml
 application.properties
+local.properties
+pub.properties
+secure.properties
 .DS_Store
 
 ### IntelliJ IDEA ###
@@ -36,6 +39,8 @@ out/
 !**/src/test/**/out/
 application-prod.yml
 application.properties
+application-pub.yml
+application.yml
 .DS_Store
 
 ### NetBeans ###
@@ -46,10 +51,14 @@ application.properties
 /.nb-gradle/
 application.properties
 application-prod.yml
+application-pub.yml
+application.yml
 .DS_Store
 
 ### VS Code ###
 .vscode/
 application.properties
 application-prod.yml
+application-pub.yml
+application.yml
 .DS_Store

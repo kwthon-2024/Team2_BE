@@ -33,6 +33,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 
     @Override
     @Transactional
+    // 쿼리 4개 나가는데 검토
+
     public void createBookmark(CreateDto createDto) {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         String boardId = createDto.getBoardId();
