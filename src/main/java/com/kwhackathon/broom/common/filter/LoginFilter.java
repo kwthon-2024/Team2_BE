@@ -6,6 +6,8 @@ import io.jsonwebtoken.io.IOException;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kwhackathon.broom.common.dto.LoginResponseDto;
 import com.kwhackathon.broom.common.util.CookieGenerator;
 import com.kwhackathon.broom.common.util.JwtGenerator;
 import com.kwhackathon.broom.user.entity.User;
@@ -48,6 +50,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             Authentication authentication) throws java.io.IOException {
         String userId = authentication.getName();
         String role = authentication.getAuthorities().iterator().next().getAuthority();
+
 
         String accessToken = jwtGenerator.generateJwt("access", userId, role, 1000 * 60 * 1000L); // 1000분(테스트용)
         String refreshToken = jwtGenerator.generateJwt("refresh", userId, role, 24 * 60 * 60 * 1000L); // 24시간

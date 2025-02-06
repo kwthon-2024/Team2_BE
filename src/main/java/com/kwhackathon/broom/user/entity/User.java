@@ -13,6 +13,9 @@ import com.kwhackathon.broom.board.entity.Board;
 import com.kwhackathon.broom.bookmark.entity.Bookmark;
 import com.kwhackathon.broom.user.dto.UserRequest.ChangeUserInfoDto;
 import com.kwhackathon.broom.user.util.MilitaryBranch;
+
+import com.kwhackathon.broom.user.dto.request.UpdateUserInfoDto;
+import com.kwhackathon.broom.user.util.MilitaryChaplain;
 import com.kwhackathon.broom.user.util.Role;
 
 import jakarta.persistence.CascadeType;
@@ -63,6 +66,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Participant> participants;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
