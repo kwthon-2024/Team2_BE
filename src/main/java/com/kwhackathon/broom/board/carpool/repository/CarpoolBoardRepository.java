@@ -1,15 +1,10 @@
 package com.kwhackathon.broom.board.carpool.repository;
 
-import com.kwhackathon.broom.board.carpool.entity.CarpoolBoard;
+
+import com.kwhackathon.broom.board.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDate;
-import java.util.List;
-
-
-
-public interface CarpoolBoardRepository extends JpaRepository<CarpoolBoard, Long> {
+public interface CarpoolBoardRepository extends JpaRepository<Board, Long> {
 //    @Query("SELECT e FROM CarpoolBoard e ORDER BY e.createdAt DESC")
 //    List<CarpoolBoard> findAllOrderByCreatedAtDesc();
 //

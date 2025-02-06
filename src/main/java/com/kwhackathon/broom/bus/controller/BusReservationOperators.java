@@ -1,10 +1,13 @@
 package com.kwhackathon.broom.bus.controller;
 
-import com.kwhackathon.broom.bus.dto.request.CreateReservationDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@RestController
+import com.kwhackathon.broom.bus.dto.request.CreateReservationDto;
+
 public interface BusReservationOperators {
     @PostMapping("/bus/reservation")
     ResponseEntity<?> createReservation(@RequestBody CreateReservationDto createReservationDto);

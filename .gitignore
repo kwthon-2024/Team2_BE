@@ -1,14 +1,13 @@
 HELP.md
 .gradle
+.idea
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+application.properties
 .DS_Store
-application-pub.yml
-local.properties
-pub.properties
-secure.properties
+
 
 ### STS ###
 .apt_generated
@@ -21,6 +20,14 @@ secure.properties
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+application.yml
+application-local.yml
+application-prod.yml
+application.properties
+local.properties
+pub.properties
+secure.properties
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
@@ -30,6 +37,11 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+application-prod.yml
+application.properties
+application-pub.yml
+application.yml
+.DS_Store
 
 ### NetBeans ###
 /nbproject/private/
@@ -37,6 +49,16 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+application.properties
+application-prod.yml
+application-pub.yml
+application.yml
+.DS_Store
 
 ### VS Code ###
 .vscode/
+application.properties
+application-prod.yml
+application-pub.yml
+application.yml
+.DS_Store

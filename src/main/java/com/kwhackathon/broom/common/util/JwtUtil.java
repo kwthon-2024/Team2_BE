@@ -1,14 +1,16 @@
 package com.kwhackathon.broom.common.util;
 
-import io.jsonwebtoken.Jwts;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
+import io.jsonwebtoken.Jwts;
 
 @Component
 @PropertySource("classpath:secure.properties")
@@ -37,23 +39,11 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration()
                 .before(new Date());
     }
-    
-    // access토큰인지 refresh토큰인지 카테고리 추출
-    public String getCategory(String token) {
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("category",
-                String.class);
-    }
 
-    // 새 토큰을 생성
-    public String createJwt(String category, String username, String role, Long expiredMs) {
-        return Jwts.builder()
-                .claim("category", category)    //access토큰인지 refresh토큰인지 표시
-                .claim("userId", 
-                        username)    // 페이로드에 userId(email)추가
-                .claim("role", role)    // 페이로드에 role추가
-                .issuedAt(new Date(System.currentTimeMillis())) // token이 발급되는 시점 기록
-                .expiration(new Date(System.currentTimeMillis() + expiredMs))   //만료 기점 기록
-                .signWith(secretKey)    // 암호화 진행
-                .compact(); // 토큰 최종 발행
+    public boolean isValidAuthorization(String authorization){
+        if (authorization == null || !authorization.startsWith("bearer")) {
+            return false;
+        }
+        return true;
     }
 }

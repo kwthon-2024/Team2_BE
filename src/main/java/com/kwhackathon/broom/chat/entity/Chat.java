@@ -1,25 +1,28 @@
 package com.kwhackathon.broom.chat.entity;
 
+import com.kwhackathon.broom.participant.entity.Participant;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Data
 public class Chat {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chat_message_id",unique = true, nullable = false)
+    @GeneratedValue
+    @Column(name = "chat_id")
     private Long id;
 
-    @Column(name = "created_at", updatable = false)
-    @CreatedDate
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "message", nullable = false)
-    private String message;
+    @Column(name = "massage")
+    private String massage;
 
-    @Column(name = "is_read")
-    private Boolean isRead;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="participant_id")
+    private Participant participant;
 }

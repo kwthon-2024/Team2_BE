@@ -1,60 +1,98 @@
 package com.kwhackathon.broom.board.entity;
 
-import com.kwhackathon.broom.user.entity.User;
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import java.util.List;
+import java.util.UUID;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.UUID;
+
+import com.kwhackathon.broom.participant.entity.Participant;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.kwhackathon.broom.board.dto.BoardRequest.WriteBoardDto;
+import com.kwhackathon.broom.board.util.category.Category;
+import com.kwhackathon.broom.bookmark.entity.Bookmark;
+import com.kwhackathon.broom.user.entity.User;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn
-@EntityListeners(AuditingEntityListener.class)
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "board")
 public class Board {
-    @EqualsAndHashCode.Include
     @Id
-    @Column(name = "board_id", updatable = false, nullable = false)
-    private String id = UUID.randomUUID().toString(); // UUID로 고유 ID 생성
+    @Builder.Default
+    @Column(name = "board_id", nullable = false, unique = true)
+    private String boardId = UUID.randomUUID().toString();
 
-    // 게시물 제목
     @Column(name = "title", nullable = false)
     private String title;
 
-    // 게시물 본문
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
-    // 생성 날짜
-    @CreationTimestamp
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    // 사용자 지정 시간
-    @Column(name = "time", nullable = false)
-    private LocalTime time;
-
-    // 사용자 지정 장소
     @Column(name = "place", nullable = false)
     private String place;
 
-    // 인원
+    @Column(name = "time", nullable = false)
+    private LocalTime time;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
     @Column(name = "personnel", nullable = false)
     private int personnel;
 
-    // 모집 완료 여부
     @Column(name = "is_full", nullable = false)
+    @ColumnDefault("false")
     private boolean isFull;
 
-    // 훈련 날짜
     @Column(name = "training_date", nullable = false)
     private LocalDate trainingDate;
 
-    // 부모테이블 간의 매핑은 상속구조 복잡하게하고 유지보수성 저하 -> 자식 테이블로
+    @Column(name = "category", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Bookmark> bookmarks;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Participant> participants;
+
+    public void updateBoard(WriteBoardDto writeBoardDto) {
+        this.title = writeBoardDto.getTitle();
+        this.content = writeBoardDto.getContent();
+        this.place = writeBoardDto.getPlace();
+        this.time = writeBoardDto.getTime();
+        this.personnel = writeBoardDto.getPersonnel();
+        this.trainingDate = writeBoardDto.getTrainingDate();
+    }
+
+    public void changeIsFullStatus() {
+        this.isFull = !this.isFull;
+    }
 }

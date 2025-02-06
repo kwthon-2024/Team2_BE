@@ -1,9 +1,10 @@
 package com.kwhackathon.broom.user.repository;
 
-import com.kwhackathon.broom.user.entity.User;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.kwhackathon.broom.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByUserId(String UserId);
